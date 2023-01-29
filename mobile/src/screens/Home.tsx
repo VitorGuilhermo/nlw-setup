@@ -6,8 +6,8 @@ import { generateRangeDatesFromYearStart  } from "../utils/generate-range-betwee
 import { HabitDay, DAY_SIZE } from "../components/HabitDay";
 import { Header } from "../components/Header";
 import { Loading } from "../components/Loading";
-import { useNavigation } from "@react-navigation/native";
-import { useEffect, useState } from "react";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import { useCallback, useState } from "react";
 import dayjs from "dayjs";
 
 const weekDays = [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ];
@@ -28,9 +28,9 @@ export function Home() {
 
     const { navigate } = useNavigation();
 
-    useEffect(() => {
+    useFocusEffect(useCallback(() => {
         fetchData();
-    }, []);
+    }, []));
 
     async function fetchData() {
         try {

@@ -43,20 +43,21 @@ export function SummaryTable() {
 
             <div className="grid grid-rows-7 grid-flow-col gap-3">
                 {
-                    summaryDates.map(date => {
-                        const dayInSumarry = summary.find(day => {
-                            return dayjs(date).isSame(day.date, 'day');
-                        });
+                    summary.length > 0 &&
+                        summaryDates.map(date => {
+                            const dayInSumarry = summary.find(day => {
+                                return dayjs(date).isSame(day.date, 'day');
+                            });
 
-                        return (
-                            <HabitDay 
-                                key={date.toString()} 
-                                date={date}
-                                amount={dayInSumarry?.amount} 
-                                completed={dayInSumarry?.completed} 
-                            />
-                        )
-                    })
+                            return (
+                                <HabitDay 
+                                    key={date.toString()} 
+                                    date={date}
+                                    amount={dayInSumarry?.amount} 
+                                    defaultCompleted={dayInSumarry?.completed} 
+                                />
+                            )
+                        })
                 }
                 {
                     amountOfDaysToFill > 0 && 
